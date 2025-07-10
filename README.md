@@ -44,3 +44,13 @@ A fault-tolerant, testable email service with:
 ├── types.ts
 📁 tests/
 └── EmailService.test.ts
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/YOUR_USERNAME/email-service.git
+cd email-service
