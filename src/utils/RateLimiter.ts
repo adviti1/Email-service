@@ -13,7 +13,7 @@ export class RateLimiter {
     const now = Date.now();
     const timestamps = this.timestamps.get(identifier) || [];
 
-    // Remove expired timestamps
+   
     const filtered = timestamps.filter((ts) => now - ts < this.interval);
     if (filtered.length >= this.limit) return false;
 

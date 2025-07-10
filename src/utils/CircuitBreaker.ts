@@ -14,7 +14,7 @@ export class CircuitBreaker {
     if (this.state === "OPEN") {
       const now = Date.now();
       if (this.lastFailureTime && now - this.lastFailureTime > this.cooldownTime) {
-        // Cooldown period passed, reset
+        
         this.state = "CLOSED";
         this.failureCount = 0;
         return true;

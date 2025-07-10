@@ -15,21 +15,21 @@ export class EmailService {
 
   constructor() {
     this.providers = [new MockProviderA(), new MockProviderB()];
-    this.rateLimiter = new RateLimiter(5, 60 * 1000); // 5 emails per minute
+    this.rateLimiter = new RateLimiter(5, 60 * 1000);
     this.idempotencyStore = new IdempotencyStore();
     this.logger = new Logger();
     this.circuitBreakers = new Map();
 
     for (const provider of this.providers) {
       const key = provider.constructor.name;
-      this.circuitBreakers.set(key, new CircuitBreaker(3, 30000)); // 3 failures = 30s cooldown
+      this.circuitBreakers.set(key, new CircuitBreaker(3, 30000));
     }
   }
 
   public async sendEmail(payload: EmailPayload): Promise<any> {
     const { idempotencyKey, to } = payload;
 
-    // ✅ 1. Idempotency Check
+    //  Idempotency Check
     if (this.idempotencyStore.has(idempotencyKey)) {
       this.logger.log("Duplicate request blocked (idempotency key): " + idempotencyKey);
       return {
@@ -40,7 +40,7 @@ export class EmailService {
       };
     }
 
-    // ✅ 2. Rate Limiting
+    //  Rate Limiting
     if (!this.rateLimiter.allow(to)) {
       this.logger.log(`Rate limit exceeded for: ${to}`);
       return {
@@ -51,7 +51,7 @@ export class EmailService {
       };
     }
 
-    // ✅ 3. Try each provider with retry and circuit breaker
+    // Try each provider with retry and circuit breaker
     for (const provider of this.providers) {
       const providerKey = provider.constructor.name;
       const breaker = this.circuitBreakers.get(providerKey);
@@ -94,7 +94,7 @@ export class EmailService {
       this.logger.warn(`Provider ${providerKey} failed. Trying next...`);
     }
 
-    // ✅ 4. All providers failed
+    //  All providers failed
     this.logger.error(`All providers failed to send email to ${to}`);
     return {
       success: false,
