@@ -1,4 +1,4 @@
-import { EmailProvider, EmailPayload } from "../types";
+import { EmailProvider, EmailPayload } from "../../types";
 
 export class MockProviderA implements EmailProvider {
   async sendEmail(payload: EmailPayload): Promise<boolean> {
