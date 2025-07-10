@@ -1,4 +1,4 @@
-import { EmailService } from "../src/services/EmailService";
+import { EmailService } from "../services/EmailService";
 
 const validPayload = {
   to: "test@example.com",
