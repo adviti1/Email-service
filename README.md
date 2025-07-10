@@ -1,58 +1,69 @@
-📧 Resilient Email Sending Service (TypeScript)
-A production-ready, fault-tolerant email service built with TypeScript, designed to handle failure gracefully and ensure message delivery with resilience and intelligence.
+# 📧 Resilient Email Sending Service (TypeScript)
 
-✅ Perfect for systems that demand reliability, deduplication, and provider fallback.
+A **production-ready**, **fault-tolerant** email service built with TypeScript, designed to handle failures gracefully and ensure message delivery with intelligence.
 
-✨ What Makes This Special?
-🔁 Retries – Automatically retries failed sends (with exponential backoff)
-🔄 Fallback – Switches to backup provider on failure
-⚡ Circuit Breaker – Avoids flaky providers for a cooling period
-🛡️ Idempotency – Prevents duplicate emails with unique keys
-🚦 Rate Limiting – 5 emails/minute per recipient
-📝 Logging – Insightful logs for every action
-📊 Status Tracking – Know which provider was used and how many attempts it took
-🧪 Mock Providers – Simulate real-world provider behavior for safe testing
+> ✅ Perfect for systems that demand **reliability**, **deduplication**, and **provider fallback**.
 
-🧠 Project Architecture
-bash
-Copy
-Edit
+---
+
+## ✨ Key Features
+
+- 🔁 **Retry with Exponential Backoff**
+- 🔄 **Provider Fallback**
+- ⚡ **Circuit Breaker**
+- 🛡️ **Idempotency Support**
+- 🚦 **Rate Limiting**
+- 📊 **Status Tracking**
+- 📝 **Logging**
+- 🧪 **Mock Providers for Testing**
+
+---
+
+## 🧠 Project Structure
+
 📁 src/
 │
 ├── services/
-│   ├── EmailService.ts         # Core logic & flow
-│   └── providers/
-│       ├── MockProviderA.ts    # Random failure mock
-│       └── MockProviderB.ts    # Always succeed mock
+│ ├── EmailService.ts # Core logic
+│ └── providers/
+│ ├── MockProviderA.ts # Randomly fails
+│ └── MockProviderB.ts # Always succeeds
 │
 ├── utils/
-│   ├── RateLimiter.ts          # Rate limiting logic
-│   ├── IdempotencyStore.ts     # Deduplication logic
-│   ├── Logger.ts               # Custom console logger
-│   └── CircuitBreaker.ts       # Skip broken providers
+│ ├── RateLimiter.ts
+│ ├── IdempotencyStore.ts
+│ ├── Logger.ts
+│ └── CircuitBreaker.ts
 │
-├── types.ts                    # Common interfaces
+├── types.ts # Common types
 │
 📁 tests/
-└── EmailService.test.ts        # Jest test suite
-🚀 Quickstart
-🔧 Clone the repo
-bash
+└── EmailService.test.ts # Unit tests
+
+yaml
 Copy
 Edit
-git clone https://github.com/YOUR_USERNAME/email-service.git
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repo
+
+```bash
+git clone https://github.com/adviti1/Email-service.git
 cd email-service
-📦 Install dependencies
+2️⃣ Install Dependencies
 bash
 Copy
 Edit
 npm install
-✅ Run Tests
+3️⃣ Run the Tests
 bash
 Copy
 Edit
 npx jest
-🟢 You should see:
+✅ Expected Output:
 
 vbnet
 Copy
@@ -60,46 +71,41 @@ Edit
 ✓ sends email successfully
 ✓ blocks duplicate idempotency key
 ✓ respects rate limiting
-📬 How to Use It
-Use the EmailService class like this:
+📬 How to Use
+You can use the EmailService class by passing the following payload:
 
 ts
 Copy
 Edit
 {
-  to: "user@example.com",
+  to: "test@example.com",
   subject: "Hello from Adviti's Service 🚀",
-  body: "This is a real-time test email.",
+  body: "This is a resilient test email.",
   idempotencyKey: "unique-key-001"
 }
-🧪 Mock Providers Explained
+🧪 Mock Providers
 Provider	Behavior
-MockProviderA	Randomly fails (tests retry/fallback)
-MockProviderB	Always succeeds
+MockProviderA	Randomly fails (to test retry/fallback)
+MockProviderB	Always succeeds (backup provider)
 
-These simulate real-world conditions and are ideal for testing circuit breakers, retries, and failovers.
+These simulate real-world scenarios to test reliability features.
 
-🌍 Live Demo
-Send a POST request to:
+🌐 Live API
+🚀 https://email-service-l30l.onrender.com/send-email
 
-🔗 https://email-service-l30l.onrender.com/send-email
+📨 Example POST Request (use Postman or curl):
 
-Example POST (use Postman or cURL):
 json
 Copy
 Edit
 {
   "to": "test@example.com",
-  "subject": "Hello from the Cloud",
-  "body": "This email was sent from a resilient TypeScript service!",
+  "subject": "Live API Test",
+  "body": "Hello from the deployed API!",
   "idempotencyKey": "email-adviti-123"
 }
-🎥 Screencast
-🎬 Coming Soon: [Add your Loom/YouTube link here]
-
-💡 Inspired by Real-World Problems
-This service reflects battle-tested patterns used by big companies like Stripe, Amazon, and Twilio to guarantee message delivery in unreliable conditions.
+📹 Screencast
+🎥 Coming Soon – Add your screencast video link here.
 
 👩‍💻 Author
 Made with 💙 by Adviti Gangwat
-
