@@ -108,4 +108,4 @@ Edit
 🎥 Coming Soon – Add your screencast video link here.
 
 👩‍💻 Author
-Made with 💙 by Adviti Gangwat
+Made with 💙 by Adviti Gangwar
